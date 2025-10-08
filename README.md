@@ -1,2 +1,1 @@
-# omlet-launch
-Omlet Launch!
+# Omlet Launch!
