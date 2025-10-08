@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Screen</title>
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        background-color: #282a39;
+        color: #fff;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        text-align: center;
+    }
+
+    img {
+        display: block;
+        margin: 10px auto;
+    }
+    
+    .logo{
+    	border-radius: 20px;
+    }
+
+    .description {
+        margin-top: 20px;
+        font-size: 1.2rem;
+        color: #fff;
+        font-weight: bold;
+    }
+
+    #countdown {
+        display: flex;
+        gap: 15px;
+        margin-top: 30px;
+    }
+
+    .time-box {
+        border: 2px solid #ff6948;
+        padding: 20px 15px;
+        border-radius: 10px;
+        min-width: 70px;
+    }
+
+    .number {
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+    .label {
+        font-size: 0.9rem;
+        margin-top: 5px;
+    }
+
+    .download-btn {
+        margin-top: 30px;
+        padding: 15px 30px;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #fff;
+        background-color: #ff6948;
+        border: none;
+        border-radius: 10px;
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .download-btn:hover {
+        background-color: #ff855c;
+    }
+</style>
+</head>
+<body>
+
+<img src="./assets/Logo.png" alt="App Logo" class="logo" width="150">
+<img src="./assets/Text.png" alt="App Name" width="200">
+
+<div class="description">Countdown to the app launch</div>
+
+<div id="countdown">
+    <div class="time-box">
+        <div class="number" id="days">0</div>
+        <div class="label">Days</div>
+    </div>
+    <div class="time-box">
+        <div class="number" id="hours">0</div>
+        <div class="label">Hours</div>
+    </div>
+    <div class="time-box">
+        <div class="number" id="minutes">0</div>
+        <div class="label">Minutes</div>
+    </div>
+    <div class="time-box">
+        <div class="number" id="seconds">0</div>
+        <div class="label">Seconds</div>
+    </div>
+</div>
+
+<script>
+    const targetDate = new Date("2025-10-10T20:00:00").getTime();
+
+    function updateCountdown() {
+        const now = new Date().getTime();
+        const distance = targetDate - now;
+
+        if (distance <= 0) {
+            clearInterval(countdownInterval);
+
+            document.getElementById("countdown").innerHTML = `
+                <div class="description">Download Available!</div>
+                <a href="https://dsc.gg/omlet-live" class="download-btn" target="_blank">Download Now</a>
+            `;
+            return;
+        }
+
+        const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+        const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+        const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+        const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+        document.getElementById("days").textContent = days;
+        document.getElementById("hours").textContent = hours;
+        document.getElementById("minutes").textContent = minutes;
+        document.getElementById("seconds").textContent = seconds;
+    }
+
+    const countdownInterval = setInterval(updateCountdown, 1000);
+    updateCountdown();
+</script>
+
+</body>
+</html>
