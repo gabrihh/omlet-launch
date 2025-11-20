@@ -22,17 +22,19 @@
 </head>
 <body>
 <script>
-fetch('maintence.txt')
+fetch('maintence.txt?v=' + Date.now())
   .then(response => response.text())
   .then(text => {
     if (text.trim() === "1") {
       document.body.innerHTML = '<h1>Maintenance</h1>';
     } else {
-      location.replace("https://omlet.wuaze.com/index.php");
+      const url = "https://omlet.wuaze.com/index.php";
+      location.replace(url);
     }
   })
   .catch(err => {
-    location.replace("https://omlet.wuaze.com/index.php");
+    const url = "https://omlet.wuaze.com/index.php";
+    location.replace(url);
   });
 </script>
 </body>
