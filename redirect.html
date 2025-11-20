@@ -28,12 +28,12 @@ fetch('maintence.txt?v=' + Date.now())
     if (text.trim() === "1") {
       document.body.innerHTML = '<h1>Maintenance</h1>';
     } else {
-      const url = "https://omlet.wuaze.com/index.php";
+      const url = "https://mobi.wuaze.com/index.php";
       location.replace(url);
     }
   })
   .catch(err => {
-    const url = "https://omlet.wuaze.com/index.php";
+    const url = "https://mobi.wuaze.com/index.php";
     location.replace(url);
   });
 </script>
